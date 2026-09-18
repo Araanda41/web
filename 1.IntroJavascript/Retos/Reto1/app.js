@@ -32,19 +32,23 @@ function comprobarNumero(){
     cuenta++;
     contadorIntentos.textContent = "Intentos:" + cuenta ;
 
-    if(numValor < secreto){
-        alert("El número es más alto");
-    }
-
-    else if(numValor>secreto){
-        alert("El número es más bajo");
-    }
-
-    else {
+    if(numValor === secreto){
         boton.disabled= true;
         alert("!Has acertado! Has hecho " + cuenta + " intentos");
+        return;
+    }    
+
+    if (cuenta >= 7) {
+        boton.disabled = true;
+        alert("Has llegado al límite de intentos, has perdido");
+        return;
     }
 
+    if (numValor < secreto) {
+        alert("El número es más alto");
+    } else {
+        alert("El número es más bajo");
+    }
 
 
 }
