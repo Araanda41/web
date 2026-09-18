@@ -2,9 +2,11 @@ const probarBoton = document.querySelector("#probar");
 const reiniciarBoton = document.querySelector("#reiniciar");
 const contadorIntentos = document.querySelector("#contador");
 const input = document.querySelector("#intento");
+const historial = document.querySelector("#historial");
+const arrayIntentos = [];
 let secreto = generarNumeroSecreto();
-
 let cuenta = 0;
+
 
 probarBoton.addEventListener("click", comprobarNumero);
 
@@ -22,6 +24,8 @@ function reiniciarJuego(){
     console.log("Psst..... el secreto es", secreto);
     cuenta = 0;
     contadorIntentos.textContent = "Intentos: 0";
+    historial.textContent = "Todavía no has probado ningún número.";
+    arrayIntentos.length = 0;
 }
 
 function comprobarNumero(){
@@ -48,6 +52,9 @@ function comprobarNumero(){
     
     cuenta++;
     contadorIntentos.textContent = "Intentos:" + cuenta ;
+    arrayIntentos.push(numValor);
+    // el join convierte todos los elementos en una cadena de texto y puedes añadirle un separador por cada elemento como aquii que pongo la coma y el espacio
+    historial.textContent = "Has probado el: " + arrayIntentos.join(", ");
 
     if(numValor === secreto){
         probarBoton.disabled= true;
