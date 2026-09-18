@@ -1,12 +1,29 @@
-const boton = document.querySelector("#boton");
+const probarBoton = document.querySelector("#probar");
+const reiniciarBoton = document.querySelector("#reiniciar");
 const contadorIntentos = document.querySelector("#contador");
 const input = document.querySelector("#intento");
-const secreto = Math.floor(Math.random()*100 + 1);
+let secreto = generarNumeroSecreto();
 
 let cuenta = 0;
 
-boton.addEventListener("click", comprobarNumero)
+probarBoton.addEventListener("click", comprobarNumero);
+
+reiniciarBoton.addEventListener("click", reiniciarJuego);
+
 console.log("Psst..... el secreto es", secreto);
+
+function generarNumeroSecreto() {
+    return Math.floor(Math.random() * 100 + 1);
+}
+
+function reiniciarJuego(){
+    probarBoton.disabled = false;
+    secreto = generarNumeroSecreto();
+    console.log("Psst..... el secreto es", secreto);
+    cuenta = 0;
+    contadorIntentos.textContent = "Intentos: 0";
+}
+
 function comprobarNumero(){
     // quito los espacios 
     const valor = input.value.trim();
@@ -33,13 +50,13 @@ function comprobarNumero(){
     contadorIntentos.textContent = "Intentos:" + cuenta ;
 
     if(numValor === secreto){
-        boton.disabled= true;
+        probarBoton.disabled= true;
         alert("!Has acertado! Has hecho " + cuenta + " intentos");
         return;
     }    
 
     if (cuenta >= 7) {
-        boton.disabled = true;
+        probarBoton.disabled = true;
         alert("Has llegado al límite de intentos, has perdido");
         return;
     }
