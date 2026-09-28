@@ -113,6 +113,7 @@ function comprobarChoque() {
 
         if (!vallas[carrilActual].hidden && (abajoObstaculo > arribaCoche) && (fila.posicion < abajoCoche)) {
             partidaTerminada = true;
+            document.body.classList.add("derrota");
             // paro el movimiento de la valla parando el intervalo
             clearInterval(bucleJuego);
             clearInterval(buclePuntos);
@@ -128,6 +129,7 @@ function reiniciarPartida() {
     clearInterval(bucleJuego);
     clearInterval(buclePuntos);
     partidaTerminada = false;
+    document.body.classList.remove("derrota");
     finPartida.hidden = true;
     puntos = 0;
     velocidad = 3;
