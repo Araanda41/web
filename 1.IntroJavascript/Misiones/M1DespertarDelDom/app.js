@@ -7,7 +7,7 @@ const puntuacion = document.querySelector("#puntuacion");
 const puntuacionFinal = document.querySelector("#puntuacion-final");
 
 const posiciones = ["16.67%", "50%", "83.33%"];
-// separacion entre grupos de vallas
+// separación entre grupos de vallas
 const separacion = 260;
 const filas = [
     {
@@ -55,7 +55,7 @@ function obtenerVallas(fila) {
     return fila.vallas;
 }
 
-// elige al azar si esta fila lleva una o dos vallas y en que carriles
+// elige al azar si esta fila lleva una o dos vallas y en qué carriles
 function prepararFila(fila) {
     const vallas = obtenerVallas(fila);
     const carrilElegido = Math.floor(Math.random() * 3);
@@ -73,7 +73,7 @@ function prepararFila(fila) {
     fila.elemento.style.top = `${fila.posicion}px`;
 }
 
-// coloca las dos filas fuera de la carretera, separadas entre si
+// coloca las dos filas fuera de la carretera, separadas entre sí
 function prepararObstaculos() {
     for (let i = 0; i < filas.length; i++) {
         filas[i].posicion = -40 - i * separacion;
@@ -101,23 +101,23 @@ function moverObstaculos() {
 function sumarPunto() {
     puntos++;
     puntuacion.textContent = puntos;
-    // con dos filas dejamos el limite en 6 para dar tiempo a cambiar de carril
+    // con dos filas dejamos el límite en 6 para dar tiempo a cambiar de carril
     if (puntos % 10 === 0 && velocidad < 6) {
         velocidad = velocidad + 1;
     }
 }
 
-// cuandod hay chcoque se para el tempo y se muestra el texto de que piuerdes
+// cuando hay choque se para el tiempo y se muestra el texto de que pierdes
 function comprobarChoque() {
     if (partidaTerminada) {
         return;
     }
-    // parte de arriba del coche dejando 4 pixeles margenb
+    // parte de arriba del coche dejando 4 píxeles margen
     const arribaCoche = coche.offsetTop + 4;
     // lo mismo con la parte de abajo
     const abajoCoche = coche.offsetTop + coche.offsetHeight - 4;
 
-    // compuebo ccada fila por separado
+    // compruebo cada fila por separado
     for (let i = 0; i < filas.length; i++) {
         const fila = filas[i];
         const vallas = obtenerVallas(fila);
@@ -158,7 +158,7 @@ botonReiniciar.addEventListener("click", reiniciarPartida);
 
 prepararObstaculos();
 
-// con setinterval va a moverse la valla cada 0.02 segundos
+// con setInterval va a moverse la valla cada 0.02 segundos
 let bucleJuego = setInterval(moverObstaculos, 20);
 // cada segundo se suma un punto
 let buclePuntos = setInterval(sumarPunto, 1000);
