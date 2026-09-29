@@ -37,12 +37,26 @@ function controlarTeclado(evento) {
         return;
     }
 
-    if (evento.key === "ArrowLeft" && carrilActual > 0 && !partidaTerminada) {
+    if (evento.key === "ArrowDown" || evento.key.toLowerCase() === "s") {
+        cambiarTema();
+    } else if (evento.key === "ArrowLeft" || evento.key === "ArrowRight") {
+        moverCoche(evento.key);
+    }
+}
+
+function cambiarTema() {
+    document.body.classList.toggle("noche");
+}
+
+function moverCoche(tecla) {
+    if (partidaTerminada) {
+        return;
+    }
+
+    if (tecla === "ArrowLeft" && carrilActual > 0) {
         carrilActual--;
-    } else if (evento.key === "ArrowRight" && carrilActual < 2 && !partidaTerminada) {
+    } else if (tecla === "ArrowRight" && carrilActual < 2) {
         carrilActual++;
-    } else if (evento.key === "ArrowDown" || evento.key.toLowerCase() === "s") {
-        document.body.classList.toggle("noche");
     }
 
     coche.style.left = posiciones[carrilActual];
