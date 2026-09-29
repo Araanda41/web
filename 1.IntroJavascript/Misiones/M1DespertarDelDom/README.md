@@ -42,7 +42,7 @@ Los eventos se registran con `addEventListener`: `keydown` controla las teclas y
 
 ## Uso de IA
 
-He utilizado ChatGPT/Codex durante el desarrollo sobre todo para poder editar los estilos que es en lo que menos soltura tengo y gracias a la ayuda he conseguido recordar y conocer funciones que no recordaba o concía para poder estilar la página con más soltura y velocidad como yo quería.
+He utilizado ChatGPT/Codex durante el desarrollo sobre todo para poder editar los estilos que es en lo que menos soltura tengo y gracias a la ayuda he conseguido recordar y conocer funciones que no recordaba o conocía para poder estilar la página con más soltura y velocidad como yo quería.
 
 También la he utilizado para comprobar casos de movimiento, colisión y reinicio, para revisar la presentación en el navegador y editar el Readme de erratas, fallos de estructura o forma de explicarme.
 
