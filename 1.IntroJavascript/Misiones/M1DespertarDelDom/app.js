@@ -51,9 +51,13 @@ function controlarTeclado(evento) {
 
 document.addEventListener("keydown", controlarTeclado);
 
+function obtenerVallas(fila) {
+    return fila.vallas;
+}
+
 // elige al azar si esta fila lleva una o dos vallas y en que carriles
 function prepararFila(fila) {
-    const vallas = fila.vallas;
+    const vallas = obtenerVallas(fila);
     const carrilElegido = Math.floor(Math.random() * 3);
     const cantidadVallas = Math.floor(Math.random() * 2) + 1;
 
@@ -116,7 +120,7 @@ function comprobarChoque() {
     // compuebo ccada fila por separado
     for (let i = 0; i < filas.length; i++) {
         const fila = filas[i];
-        const vallas = fila.vallas;
+        const vallas = obtenerVallas(fila);
         const abajoObstaculo = fila.posicion + fila.elemento.offsetHeight;
 
         if (!vallas[carrilActual].hidden && (abajoObstaculo > arribaCoche) && (fila.posicion < abajoCoche)) {
