@@ -10,8 +10,16 @@ const posiciones = ["16.67%", "50%", "83.33%"];
 // separacion entre grupos de vallas
 const separacion = 260;
 const filas = [
-    { elemento: elementosFilas[0], posicion: 0 },
-    { elemento: elementosFilas[1], posicion: 0 }
+    {
+        elemento: elementosFilas[0],
+        posicion: 0,
+        vallas: elementosFilas[0].querySelectorAll(".valla")
+    },
+    {
+        elemento: elementosFilas[1],
+        posicion: 0,
+        vallas: elementosFilas[1].querySelectorAll(".valla")
+    }
 ];
 
 let carrilActual = 1;
@@ -45,7 +53,7 @@ document.addEventListener("keydown", controlarTeclado);
 
 // elige al azar si esta fila lleva una o dos vallas y en que carriles
 function prepararFila(fila) {
-    const vallas = fila.elemento.querySelectorAll(".valla");
+    const vallas = fila.vallas;
     const carrilElegido = Math.floor(Math.random() * 3);
     const cantidadVallas = Math.floor(Math.random() * 2) + 1;
 
@@ -108,7 +116,7 @@ function comprobarChoque() {
     // compuebo ccada fila por separado
     for (let i = 0; i < filas.length; i++) {
         const fila = filas[i];
-        const vallas = fila.elemento.querySelectorAll(".valla");
+        const vallas = fila.vallas;
         const abajoObstaculo = fila.posicion + fila.elemento.offsetHeight;
 
         if (!vallas[carrilActual].hidden && (abajoObstaculo > arribaCoche) && (fila.posicion < abajoCoche)) {
