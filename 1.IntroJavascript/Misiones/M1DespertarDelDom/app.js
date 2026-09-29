@@ -58,7 +58,7 @@ function prepararFila(fila) {
         }
     }
 
-    fila.elemento.style.top = fila.posicion + "px";
+    fila.elemento.style.top = `${fila.posicion}px`;
 }
 
 // coloca las dos filas fuera de la carretera, separadas entre si
@@ -80,7 +80,7 @@ function moverObstaculos() {
             prepararFila(fila);
         }
 
-        fila.elemento.style.top = fila.posicion + "px";
+        fila.elemento.style.top = `${fila.posicion}px`;
     }
 
     comprobarChoque();
