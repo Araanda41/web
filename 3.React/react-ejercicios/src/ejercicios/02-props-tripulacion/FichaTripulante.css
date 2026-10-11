@@ -1,0 +1,39 @@
+.ficha {
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--accent);
+  border-radius: 12px;
+  background: var(--bg);
+  box-shadow: var(--shadow);
+  text-align: left;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ficha:hover {
+  transform: translateY(-4px);
+}
+
+.ficha h2 {
+  margin: 0 0 12px;
+  color: var(--text-h);
+  font-size: 1.4rem;
+}
+
+.ficha p {
+  margin: 6px 0;
+}
+
+.ficha-etiqueta {
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.ficha-especie {
+  display: inline-block;
+  padding: 2px 10px;
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-size: 0.85rem;
+}
