@@ -9,8 +9,60 @@
 <body>
     <main>
         <header class="cabecera">
+            <p class="etiqueta">Clasificación de pilotos</p>
             <h1>Parrilla <span>F1</span></h1>
         </header>
+
+        <section class="controles" aria-label="Filtros">
+            <label>
+                Temporada
+                <select id="temporada"></select>
+            </label>
+            <label>
+                Escudería
+                <select id="escuderia">
+                    <option value="">Todas</option>
+                </select>
+            </label>
+            <label class="buscador">
+                Buscar piloto
+                <input id="busqueda" type="search" placeholder="Nombre o código, por ejemplo ALO" autocomplete="off">
+            </label>
+        </section>
+
+        <section id="resumen" class="resumen" aria-label="Resumen de la temporada" hidden>
+            <article>
+                <p class="etiqueta">Campeón o líder</p>
+                <p id="lider" class="dato"></p>
+            </article>
+            <article>
+                <p class="etiqueta">Pilotos</p>
+                <p id="total-pilotos" class="dato"></p>
+            </article>
+            <article>
+                <p class="etiqueta">Puntos repartidos</p>
+                <p id="total-puntos" class="dato"></p>
+            </article>
+            <article>
+                <p class="etiqueta">Victorias</p>
+                <p id="total-victorias" class="dato"></p>
+            </article>
+        </section>
+
+        <section id="escuderias" class="escuderias" aria-label="Clasificación de escuderías" hidden>
+            <h2>Escuderías</h2>
+            <ol id="lista-escuderias"></ol>
+        </section>
+
+        <section id="estado" class="estado" aria-live="polite" hidden>
+            <div class="semaforo" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <p id="mensaje-estado"></p>
+            <button id="reintentar" type="button" hidden>Reintentar</button>
+        </section>
+
+        <section id="pilotos" class="pilotos" aria-label="Pilotos"></section>
     </main>
     <script type="module" src="/src/main.ts"></script>
 </body>
