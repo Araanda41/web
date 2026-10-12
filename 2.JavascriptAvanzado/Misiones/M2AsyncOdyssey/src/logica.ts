@@ -9,7 +9,7 @@ function aNumero(texto: string | undefined): number {
 // quita los pilotos sin datos y los deja con una forma mas comoda
 export function limpiarPilotos(pilotosApi: PilotoApi[]): Piloto[] {
     return pilotosApi
-        .filter((piloto) => piloto.Driver !== undefined)
+        .filter((piloto) => piloto?.Driver)
         .map((piloto, indice) => {
             const conductor = piloto.Driver ?? {};
             const escuderias = piloto.Constructors ?? [];
@@ -25,8 +25,8 @@ export function limpiarPilotos(pilotosApi: PilotoApi[]): Piloto[] {
                 codigo: conductor.code ?? (conductor.familyName ?? "???").slice(0, 3).toUpperCase(),
                 numero: conductor.permanentNumber ?? "",
                 nacionalidad: conductor.nationality ?? "Desconocida",
-                escuderia: escuderia.name ?? "Sin escuderia",
-                escuderiaId: escuderia.constructorId ?? "",
+                escuderia: escuderia.name ?? "Sin escudería",
+                escuderiaId: escuderia.constructorId ?? "sin-escuderia",
                 puntos: aNumero(piloto.points),
                 victorias: aNumero(piloto.wins)
             };
@@ -44,7 +44,7 @@ export function filtrarPilotos(pilotos: Piloto[], escuderiaId: string, busqueda:
 
 // agrupa los pilotos por escuderia suma sus puntos y las ordena de mas a menos puntos
 export function calcularEscuderias(pilotos: Piloto[]): Escuderia[] {
-    const grupos = Object.groupBy(pilotos, (piloto) => piloto.escuderiaId || piloto.escuderia);
+    const grupos = Object.groupBy(pilotos, (piloto) => piloto.escuderiaId);
 
     return Object.values(grupos)
         .filter((grupo) => grupo !== undefined)
