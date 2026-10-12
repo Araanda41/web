@@ -133,7 +133,7 @@ function crearTarjeta(piloto: Piloto): HTMLElement {
     const datos = crearElemento("div", "tarjeta-datos", "");
     datos.append(
         crearElemento("span", "", `${piloto.puntos} pts`),
-        crearElemento("span", "", `${piloto.victorias} victorias`)
+        crearElemento("span", "", piloto.victorias === 1 ? "1 victoria" : `${piloto.victorias} victorias`)
     );
 
     tarjeta.append(

@@ -1,3 +1,4 @@
+import "./styles.css";
 import { pedirClasificacion } from "./api.ts";
 import { calcularEscuderias, calcularResumen, filtrarPilotos, limpiarPilotos } from "./logica.ts";
 import {

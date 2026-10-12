@@ -1,0 +1,370 @@
+/* misma paleta que el modo noche de la mision M1 */
+:root {
+    --fondo: #080f1c;
+    --texto: #e8f1ff;
+    --suave: #91a5c2;
+    --panel: #101d31;
+    --borde: #263e5d;
+    --acento: #78baff;
+    --brillo: #477cab;
+    --rojo: #ff4d67;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* sin esto el display de las secciones pisa el atributo hidden */
+[hidden] {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 40px 16px;
+    font-family: "Segoe UI", system-ui, Arial, sans-serif;
+    background:
+        radial-gradient(ellipse at top, color-mix(in srgb, var(--brillo) 30%, transparent), transparent 60%),
+        var(--fondo);
+    background-attachment: fixed;
+    color: var(--texto);
+}
+
+main {
+    width: 1080px;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.etiqueta {
+    margin: 0;
+    color: var(--suave);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.cabecera::before {
+    content: "";
+    display: block;
+    width: 36px;
+    height: 5px;
+    margin-bottom: 20px;
+    background: var(--acento);
+}
+
+h1 {
+    margin: 6px 0 0;
+    font-size: clamp(40px, 7vw, 64px);
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+h1 span {
+    color: var(--rojo);
+    font-style: italic;
+}
+
+h2 {
+    margin: 0 0 16px;
+    font-size: 13px;
+    color: var(--suave);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+button {
+    padding: 10px 18px;
+    border: 1px solid var(--borde);
+    border-radius: 999px;
+    background: var(--panel);
+    color: var(--texto);
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+button:hover {
+    border-color: var(--acento);
+    transform: translateY(-1px);
+}
+
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--acento);
+    outline-offset: 2px;
+}
+
+/* paneles comunes con el mismo borde y sombra que el M1 */
+.controles,
+.resumen article,
+.escuderias,
+.estado,
+.tarjeta {
+    border: 1px solid var(--borde);
+    border-radius: 16px;
+    background: var(--panel);
+    box-shadow: 0 4px 0 var(--borde), 0 18px 36px #00000020;
+}
+
+.controles {
+    display: grid;
+    grid-template-columns: 160px 220px 1fr;
+    gap: 16px;
+    padding: 20px;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--suave);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+select,
+input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    background: var(--fondo);
+    color: var(--texto);
+    font: inherit;
+    font-size: 15px;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.resumen {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.resumen article {
+    padding: 18px 20px;
+}
+
+.dato {
+    margin: 8px 0 0;
+    color: var(--acento);
+    font-family: Consolas, monospace;
+    font-size: 26px;
+    font-weight: bold;
+    overflow-wrap: anywhere;
+}
+
+.escuderias {
+    padding: 20px 24px;
+}
+
+.escuderias ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* cada escuderia tiene su nombre sus puntos y una barra debajo */
+.escuderias li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 6px;
+    font-size: 14px;
+}
+
+.puntos-escuderia {
+    color: var(--suave);
+    font-family: Consolas, monospace;
+}
+
+.barra {
+    grid-column: 1 / -1;
+    height: 6px;
+    border-radius: 999px;
+    transition: width 0.6s ease-out;
+}
+
+/* rejilla de tarjetas que se adapta al ancho */
+.pilotos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 16px;
+}
+
+.tarjeta {
+    position: relative;
+    overflow: hidden;
+    padding: 18px 20px 16px;
+    animation: aparecer 0.35s ease-out both;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.tarjeta:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-equipo);
+}
+
+/* franja con el color del equipo en el lateral */
+.tarjeta::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 5px;
+    background: var(--color-equipo);
+}
+
+.tarjeta-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.posicion {
+    font-family: Consolas, monospace;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+.codigo {
+    color: var(--color-equipo);
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.nombre {
+    margin: 10px 0 2px;
+    font-size: 18px;
+}
+
+.escuderia,
+.nacionalidad {
+    margin: 0;
+    color: var(--suave);
+    font-size: 13px;
+}
+
+.tarjeta-datos {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--borde);
+    font-family: Consolas, monospace;
+    font-size: 14px;
+}
+
+.tarjeta-datos span:first-child {
+    color: var(--acento);
+    font-weight: bold;
+}
+
+/* zona para los mensajes de carga error y vacio */
+.estado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.estado p {
+    margin: 0;
+    color: var(--suave);
+}
+
+.estado.error p {
+    color: var(--rojo);
+}
+
+/* semaforo de salida de la f1 que se enciende luz a luz mientras carga */
+.semaforo {
+    display: flex;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: #0b1422;
+}
+
+.semaforo span {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #22324a;
+}
+
+.cargando .semaforo span {
+    animation: luz 1.5s infinite;
+}
+
+.cargando .semaforo span:nth-child(2) { animation-delay: 0.2s; }
+.cargando .semaforo span:nth-child(3) { animation-delay: 0.4s; }
+.cargando .semaforo span:nth-child(4) { animation-delay: 0.6s; }
+.cargando .semaforo span:nth-child(5) { animation-delay: 0.8s; }
+
+.error .semaforo span {
+    background: var(--rojo);
+    box-shadow: 0 0 12px var(--rojo);
+}
+
+.vacio .semaforo {
+    display: none;
+}
+
+@keyframes luz {
+    0%, 15% {
+        background: #22324a;
+        box-shadow: none;
+    }
+    30%, 80% {
+        background: var(--rojo);
+        box-shadow: 0 0 12px var(--rojo);
+    }
+    100% {
+        background: #22324a;
+        box-shadow: none;
+    }
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+}
+
+@media (max-width: 760px) {
+    .controles {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .buscador {
+        grid-column: 1 / -1;
+    }
+
+    .resumen {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
