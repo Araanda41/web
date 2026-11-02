@@ -114,7 +114,7 @@ input:focus-visible {
 
 .controles {
     display: grid;
-    grid-template-columns: 160px 220px 1fr;
+    grid-template-columns: 160px 220px 1fr auto;
     gap: 16px;
     padding: 20px;
 }
@@ -228,7 +228,7 @@ input {
 .tarjeta-cabecera {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
 }
 
 .posicion {
@@ -351,13 +351,62 @@ input {
         grid-template-columns: 1fr 1fr;
     }
 
-    .buscador {
+    .buscador,
+    .solo-favoritos {
         grid-column: 1 / -1;
     }
 
     .resumen {
         grid-template-columns: 1fr 1fr;
     }
+}
+
+/* el checkbox sin el ancho completo de los inputs */
+.solo-favoritos {
+    flex-direction: row;
+    align-items: center;
+    align-self: end;
+    gap: 10px;
+    height: 41px;
+    cursor: pointer;
+}
+
+.solo-favoritos input {
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    accent-color: var(--acento);
+    cursor: pointer;
+}
+
+/* codigo y estrella juntos en la esquina de la tarjeta */
+.tarjeta-acciones {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.favorito {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: none;
+    color: var(--suave);
+    font-size: 20px;
+    line-height: 1;
+}
+
+.favorito:hover {
+    transform: scale(1.15);
+    color: #ffd166;
+}
+
+.favorito[aria-pressed="true"] {
+    color: #ffd166;
 }
 
 @media (prefers-reduced-motion: reduce) {

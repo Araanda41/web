@@ -15,7 +15,18 @@ export default function TarjetaPiloto({ piloto, favorito, onAlternarFavorito }: 
         <article className="tarjeta" style={estilo}>
             <div className="tarjeta-cabecera">
                 <span className="posicion">P{piloto.posicion}</span>
-                <span className="codigo">{piloto.codigo}</span>
+                <div className="tarjeta-acciones">
+                    <span className="codigo">{piloto.codigo}</span>
+                    <button
+                        type="button"
+                        className="favorito"
+                        aria-pressed={favorito}
+                        aria-label={favorito ? `Quitar a ${piloto.nombre} de favoritos` : `Añadir a ${piloto.nombre} a favoritos`}
+                        onClick={() => onAlternarFavorito(piloto.id)}
+                    >
+                        {favorito ? "★" : "☆"}
+                    </button>
+                </div>
             </div>
             <h3 className="nombre">{piloto.nombre}</h3>
             <p className="escuderia">{piloto.escuderia}</p>
@@ -26,15 +37,6 @@ export default function TarjetaPiloto({ piloto, favorito, onAlternarFavorito }: 
                 <span>{piloto.puntos} pts</span>
                 <span>{piloto.victorias === 1 ? "1 victoria" : `${piloto.victorias} victorias`}</span>
             </div>
-            <button
-                type="button"
-                className="favorito"
-                aria-pressed={favorito}
-                aria-label={favorito ? `Quitar a ${piloto.nombre} de favoritos` : `Añadir a ${piloto.nombre} a favoritos`}
-                onClick={() => onAlternarFavorito(piloto.id)}
-            >
-                {favorito ? "★" : "☆"}
-            </button>
         </article>
     );
 }
